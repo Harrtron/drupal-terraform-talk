@@ -1,3 +1,3 @@
 data "template_file" "user_data" {
-    template = "${file("userdata.sh")}"
+    template = "${file("${path.module}/userdata.sh")}"
 }
