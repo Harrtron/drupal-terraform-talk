@@ -20,7 +20,6 @@ resource "aws_elb" "loadbalancer" {
         instance_protocol = "http"
         lb_port = 80
         lb_protocol = "http"
-        //ssl_certificate_id = "${var.sslcert}"
     }
 
     health_check {

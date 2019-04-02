@@ -13,11 +13,6 @@ variable "vpc_name" {
     default = "DEFAULT"
 }
 
-variable "domain_name" {
-    type = "string"
-    default = "bjsstestingaws.com"
-}
-
 variable "keypair_name" {
     type = "string"
     default = "hthorne-kp"
