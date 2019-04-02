@@ -1,6 +1,7 @@
 module "drupal_web" {
     project_name = "${var.project_name}"
     vpc_id = "${data.aws_vpc.default.id}"
+    keypair_name = "${var.keypair_name}"
     source = "./modules/drupal_web"
 }
 

@@ -20,7 +20,8 @@ resource "aws_instance" "drupal_web" {
     ami = "${data.aws_ami.linux.id}"
     instance_type = "t3.micro"
     user_data = "${data.template_file.user_data.rendered}"
-    vpc_security_group_ids = ["${aws_security_group.instance_to_lb.id}","${aws_security_group.instance_to_db.id}"]
+    key_name = "${var.keypair_name}"
+    vpc_security_group_ids = ["${aws_security_group.instance_to_lb.id}","${aws_security_group.instance_to_db.id}", "${aws_security_group.instance_egress.id}"]
 }
 
 resource "aws_security_group" "instance_to_lb" {
@@ -29,6 +30,13 @@ resource "aws_security_group" "instance_to_lb" {
     vpc_id = "${var.vpc_id}"
 
     ingress {
+        from_port = 80
+        to_port = 80
+        protocol = "tcp"
+        self = 1
+    }
+
+    egress {
         from_port = 80
         to_port = 80
         protocol = "tcp"
